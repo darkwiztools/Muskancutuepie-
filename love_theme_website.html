@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Theme Website</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffdee9;
+            background-image: linear-gradient(0deg, #ffdee9 0%, #b5fffc 100%);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .email {
+            font-size: 24px;
+            background-color: #ff4e50;
+            color: white;
+            padding: 15px;
+            border-radius: 50px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .email:hover {
+            background-color: #fc913a;
+        }
+
+        #content {
+            display: none;
+        }
+
+        #content h2 {
+            font-size: 28px;
+            color: #ff4e50;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        #revealButton {
+            margin-top: 20px;
+            background-color: #ff4e50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        #revealButton:hover {
+            background-color: #fc913a;
+        }
+
+        #slideshow {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #slideshow img {
+            width: 300px;
+            height: 400px;
+            border-radius: 15px;
+        }
+
+        #slideshow p {
+            font-size: 16px;
+            color: #ff4e50;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        #rights {
+            font-size: 18px;
+            color: #000;
+            font-weight: bold;
+            margin-top: 10px;
+            color: red;
+        }
+
+        /* Heart background */
+        body:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://cdn.pixabay.com/photo/2017/10/24/18/04/heart-2884136_960_720.png');
+            opacity: 0.1;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="email" class="email">✉️ Tap To Open</div>
+
+        <div id="passwordBox" style="display: none;">
+            <h2>Enter Password:</h2>
+            <input type="password" id="password" placeholder="Enter Password" style="padding: 10px; font-size: 16px;">
+            <button id="submitPassword" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">Submit</button>
+            <p id="wrongPassword" style="display: none; color: red; font-weight: bold;">Wrong Password! Try again.</p>
+        </div>
+
+        <div id="content">
+            <h2>APNI PHOTO TOH MERE PHONE SE DELETE KARWA DIYA PAR MERE SERVER SE KAISE KAROGI 💖🤭😸</h2>
+            <button id="revealButton">Tap to Reveal Your Picture 🖼️ 😸</button>
+
+            <div id="slideshow">
+                <img src="https://i.ibb.co/MnJbk7X/photo1.jpg" alt="Image 1">
+                <img src="https://i.ibb.co/fnNJ41T/photo2.jpg" alt="Image 2">
+                <p>Sorry For Bad Quality Image</p>
+                <p id="rights">ALL RIGHTS OF MUSKAN MADAM GOES TO ONE AND ONLY ADITYA 😏❤️‍🔥</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const email = document.getElementById('email');
+        const passwordBox = document.getElementById('passwordBox');
+        const content = document.getElementById('content');
+        const revealButton = document.getElementById('revealButton');
+        const slideshow = document.getElementById('slideshow');
+        const passwordInput = document.getElementById('password');
+        const submitPassword = document.getElementById('submitPassword');
+        const wrongPassword = document.getElementById('wrongPassword');
+        const images = slideshow.getElementsByTagName('img');
+        let currentImageIndex = 0;
+
+        const correctPassword = "ADITYALOVEYOU*JOKE";
+
+        email.addEventListener('click', () => {
+            email.style.display = 'none';
+            passwordBox.style.display = 'block';
+        });
+
+        submitPassword.addEventListener('click', () => {
+            if (passwordInput.value === correctPassword) {
+                passwordBox.style.display = 'none';
+                content.style.display = 'block';
+            } else {
+                wrongPassword.style.display = 'block';
+            }
+        });
+
+        revealButton.addEventListener('click', () => {
+            revealButton.style.display = 'none';
+            slideshow.style.display = 'block';
+            startSlideshow();
+        });
+
+        function startSlideshow() {
+            setInterval(() => {
+                images[currentImageIndex].style.display = 'none';
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                images[currentImageIndex].style.display = 'block';
+            }, 2000);
+        }
+
+        // Initialize slideshow
+        images[0].style.display = 'block';
+        for (let i = 1; i < images.length; i++) {
+            images[i].style.display = 'none';
+        }
+    </script>
+</body>
+</html>
